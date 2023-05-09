@@ -8,10 +8,10 @@ namespace ConsoleMonApp
 {
     internal class Skill
     {
-        internal int damage;
-        internal int energyCost;
-        internal string name;
-        internal Element element = Element.Fire;
+        public int damage { get; set; }
+        public int energyCost { get; set; }
+        public string name { get; set; }
+        public Element element { get; set; }
 
         public Skill()
         {

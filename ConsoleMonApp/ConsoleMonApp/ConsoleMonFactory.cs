@@ -41,13 +41,13 @@ namespace ConsoleMonApp
         }
         internal List<ConsoleMon> LoadJson(string datafile)
         {
-            var options = new JsonSerializerOptions
+            JsonSerializerOptions includeFields = new JsonSerializerOptions
             {
                 IncludeFields = true,
             };
             string json = File.ReadAllText(datafile);
             Console.WriteLine(json);
-            List<ConsoleMon> templates = JsonSerializer.Deserialize<List<ConsoleMon>>(json, options);
+            List<ConsoleMon> templates = JsonSerializer.Deserialize<List<ConsoleMon>>(json, includeFields);
             Console.WriteLine(templates[0].name);
             return templates;
         }
@@ -61,11 +61,10 @@ namespace ConsoleMonApp
         internal ConsoleMon CopyConsoleMon(ConsoleMon copyFrom)
         {
             ConsoleMon copyResult = new ConsoleMon(copyFrom.health, copyFrom.energy, copyFrom.name, copyFrom.weakness);
-            copyResult.skills = new List<Skill>();
-            for (int i = 0; i < copyFrom.skills.Length; i++)
+            copyResult.skills = new ConsoleMon().skills;
+            for (int i = 0; i < copyFrom.skills.Length; i++) 
             {
-
-                copyResult.skills.add(CopySkill(copyFrom.skills[i]));
+                copyResult.skills[i] = copyFrom.skills[i];
             }
             return copyResult;
         }

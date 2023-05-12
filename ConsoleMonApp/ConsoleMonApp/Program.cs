@@ -9,8 +9,10 @@
             TestSkillFunctions2();
             TestFactoryFunctions();
             TestFactoryFunctions2();
+            TestConstructors();
             TestCopySkill();
             TestCopyConsoleMon();
+            TestArena();
         }
 
         static void TestConsoleMonFunctions()
@@ -74,6 +76,25 @@
             factory.LoadJson("monsterdata.json");
         }
 
+        static void TestConstructors()
+        {
+            Console.WriteLine("\nTestConstructors");
+            ConsoleMon mon = new ConsoleMon(200, 200, "ConsoleColorMon", Element.Earth);
+
+            Console.WriteLine(mon.energy == 200);
+            Console.WriteLine(mon.name == "ConsoleColorMon");
+            Console.WriteLine(mon.health == 200);
+            Console.WriteLine(mon.weakness == Element.Earth);
+
+
+            Skill skill = new Skill(90, 80, "FireBlade", Element.Fire);
+            Console.WriteLine(skill.energyCost == 80);
+            Console.WriteLine(skill.name == "FireBlade");
+            Console.WriteLine(skill.damage == 90);
+            Console.WriteLine(skill.element == Element.Fire);
+
+        }
+
         static void TestCopySkill()
         {
             Console.WriteLine("\nTestCopySkill");
@@ -105,6 +126,16 @@
             copy.skills[0].name = "newskill";
             Console.WriteLine(copy.name != copyFrom.name);
             Console.WriteLine(copy.skills[0].name != copyFrom.skills[0].name);
+        }
+
+        static void TestArena()
+        {
+            ConsoleMonFactory factory = new ConsoleMonFactory();
+            List<ConsoleMon> templates = factory.LoadJson("monsterdata.json");
+            ConsoleMon FighterA = templates[0];
+            ConsoleMon FighterB = templates[1];
+            Arena battle = new Arena();
+            battle.Fight(FighterA, FighterB);
         }
     }
 }

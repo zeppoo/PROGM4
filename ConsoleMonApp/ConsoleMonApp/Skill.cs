@@ -40,5 +40,10 @@ namespace ConsoleMonApp
                 target.TakeDamage(damage);
             }
         }
+
+        internal void Rest(ConsoleMon caster)
+        {
+            caster.energy += 40;
+        }
     }
 }

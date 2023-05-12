@@ -11,7 +11,7 @@ namespace ConsoleMonApp
         public int health { get; set; }
         public int energy { get; set; }
         public string name { get; set; }
-        public Skill[] skills;
+        public List<Skill> skills;
         public Element weakness { get; set; }
 
 

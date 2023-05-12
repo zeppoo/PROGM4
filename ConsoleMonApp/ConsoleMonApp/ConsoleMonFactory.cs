@@ -61,10 +61,10 @@ namespace ConsoleMonApp
         internal ConsoleMon CopyConsoleMon(ConsoleMon copyFrom)
         {
             ConsoleMon copyResult = new ConsoleMon(copyFrom.health, copyFrom.energy, copyFrom.name, copyFrom.weakness);
-            copyResult.skills = new ConsoleMon().skills;
-            for (int i = 0; i < copyFrom.skills.Length; i++) 
+            copyResult.skills = new List<Skill>();
+            for(int i = 0; i < copyFrom.skills.Count; i++)
             {
-                copyResult.skills[i] = copyFrom.skills[i];
+                copyResult.skills.Add(CopySkill(copyFrom.skills[i]));
             }
             return copyResult;
         }
